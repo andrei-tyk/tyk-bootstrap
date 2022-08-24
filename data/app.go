@@ -65,6 +65,7 @@ var AppConfig = AppArguments{
 
 func InitAppDataPreDelete() error {
 	AppConfig.OperatorSecretName = os.Getenv(constants.OperatorSecretNameEnvVar)
+	AppConfig.EnterprisePortalSecretName = os.Getenv(constants.EnterprisePortalSecretNameEnvVar)
 	AppConfig.TykPodNamespace = os.Getenv(constants.TykPodNamespaceEnvVar)
 	return nil
 }
@@ -103,6 +104,16 @@ func InitAppDataPostInstall() error {
 		}
 	}
 	AppConfig.OperatorSecretName = os.Getenv(constants.OperatorSecretNameEnvVar)
+
+	enterprisePortalSecretEnabledRaw := os.Getenv(constants.enterprisePortalSecretEnabledEnvVar)
+	if enterprisePortalSecretEnabledRaw != "" {
+		AppConfig.EnterprisePortalSecretEnabled, err = strconv.ParseBool(enterprisePortalSecretEnabledRaw)
+		if err != nil {
+			return err
+		}
+	}
+	AppConfig.EnterprisePortalSecretName = os.Getenv(constants.enterprisePortalSecretNameEnvVar)
+
 	AppConfig.GatewayAdress = os.Getenv(constants.GatewayAddressEnvVar)
 	bootstrapPortalBoolRaw := os.Getenv(constants.BootstrapPortalEnvVar)
 	if bootstrapPortalBoolRaw != "" {
