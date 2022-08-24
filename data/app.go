@@ -8,55 +8,59 @@ import (
 )
 
 type AppArguments struct {
-	DashboardHost           string
-	DashboardPort           int
-	DashBoardLicense        string
-	TykAdminSecret          string
-	CurrentOrgName          string
-	TykAdminPassword        string
-	Cname                   string
-	TykAdminFirstName       string
-	TykAdminLastName        string
-	TykAdminEmailAddress    string
-	UserAuth                string
-	OrgId                   string
-	CatalogId               string
-	DashboardUrl            string
-	DashboardProto          string
-	TykPodNamespace         string
-	DashboardSvc            string
-	IsDashboardEnabled      bool
-	OperatorSecretEnabled   bool
-	OperatorSecretName      string
-	GatewayAdress           string
-	BootstrapPortal         bool
-	DashboardDeploymentName string
+	DashboardHost                 string
+	DashboardPort                 int
+	DashBoardLicense              string
+	TykAdminSecret                string
+	CurrentOrgName                string
+	TykAdminPassword              string
+	Cname                         string
+	TykAdminFirstName             string
+	TykAdminLastName              string
+	TykAdminEmailAddress          string
+	UserAuth                      string
+	OrgId                         string
+	CatalogId                     string
+	DashboardUrl                  string
+	DashboardProto                string
+	TykPodNamespace               string
+	DashboardSvc                  string
+	IsDashboardEnabled            bool
+	OperatorSecretEnabled         bool
+	OperatorSecretName            string
+	EnterprisePortalSecretEnabled bool
+	EnterprisePortalSecretName    string
+	GatewayAdress                 string
+	BootstrapPortal               bool
+	DashboardDeploymentName       string
 }
 
 var AppConfig = AppArguments{
-	IsDashboardEnabled:      false,
-	OperatorSecretEnabled:   false,
-	BootstrapPortal:         false,
-	DashboardProto:          "",
-	DashboardHost:           "",
-	DashboardPort:           3000,
-	DashBoardLicense:        "",
-	TykAdminSecret:          "12345",
-	CurrentOrgName:          "TYKTYK",
-	Cname:                   "tykCName",
-	TykAdminPassword:        "123456",
-	TykAdminFirstName:       "firstName",
-	TykAdminEmailAddress:    "tyk@tyk.io",
-	TykAdminLastName:        "lastName",
-	UserAuth:                "",
-	OrgId:                   "",
-	CatalogId:               "",
-	DashboardUrl:            "",
-	TykPodNamespace:         "",
-	DashboardSvc:            "",
-	OperatorSecretName:      "",
-	GatewayAdress:           "",
-	DashboardDeploymentName: "",
+	IsDashboardEnabled:            false,
+	OperatorSecretEnabled:         false,
+	EnterprisePortalSecretEnabled: false,
+	BootstrapPortal:               false,
+	DashboardProto:                "",
+	DashboardHost:                 "",
+	DashboardPort:                 3000,
+	DashBoardLicense:              "",
+	TykAdminSecret:                "12345",
+	CurrentOrgName:                "TYKTYK",
+	Cname:                         "tykCName",
+	TykAdminPassword:              "123456",
+	TykAdminFirstName:             "firstName",
+	TykAdminEmailAddress:          "tyk@tyk.io",
+	TykAdminLastName:              "lastName",
+	UserAuth:                      "",
+	OrgId:                         "",
+	CatalogId:                     "",
+	DashboardUrl:                  "",
+	TykPodNamespace:               "",
+	DashboardSvc:                  "",
+	OperatorSecretName:            "",
+	EnterprisePortalSecretName:    "",
+	GatewayAdress:                 "",
+	DashboardDeploymentName:       "",
 }
 
 func InitAppDataPreDelete() error {
