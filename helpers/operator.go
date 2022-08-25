@@ -36,6 +36,7 @@ func BootstrapTykOperatorSecret() error {
 				return err
 			}
 			fmt.Println("A previously created operator secret was identified and deleted")
+			break
 		}
 	}
 
@@ -97,6 +98,7 @@ func BootstrapTykEnterprisePortalSecret() error {
 				return err
 			}
 			fmt.Println("A previously created enterprise portal secret was identified and deleted")
+			break
 		}
 	}
 
