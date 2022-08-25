@@ -11,6 +11,7 @@ import (
 )
 
 func BootstrapTykOperatorSecret() error {
+	fmt.Println("Started bootstrapping operator secret")
 	config, err := rest.InClusterConfig()
 	if err != nil {
 		return err
@@ -27,7 +28,6 @@ func BootstrapTykOperatorSecret() error {
 		return err
 	}
 
-	found := false
 	for _, value := range secrets.Items {
 		if value.Name == data.AppConfig.OperatorSecretName {
 			err = clientset.CoreV1().Secrets(data.AppConfig.TykPodNamespace).
@@ -35,24 +35,20 @@ func BootstrapTykOperatorSecret() error {
 			if err != nil {
 				return err
 			}
-			found = true
-			break
+			fmt.Println("A previously created operator secret was identified and deleted")
 		}
 	}
 
-	if found == false {
-		fmt.Println("A previously created operator secret has not been identified")
-		err = CreateTykOperatorSecret(clientset)
-		if err != nil {
-			return err
-		}
-	} else {
-		fmt.Println("A previously created operator secret was identified and deleted")
+	err = CreateTykOperatorSecret(clientset)
+	if err != nil {
+		return err
 	}
+
 	return nil
 }
 
 func CreateTykOperatorSecret(clientset *kubernetes.Clientset) error {
+	fmt.Println("Creating operator secret")
 	secretData := map[string][]byte{
 		TykAuth: []byte(data.AppConfig.UserAuth),
 		TykOrg:  []byte(data.AppConfig.OrgId),
@@ -76,6 +72,7 @@ func CreateTykOperatorSecret(clientset *kubernetes.Clientset) error {
 }
 
 func BootstrapTykEnterprisePortalSecret() error {
+	fmt.Println("Started bootstrapping enterprise portal secret")
 	config, err := rest.InClusterConfig()
 	if err != nil {
 		return err
@@ -92,7 +89,6 @@ func BootstrapTykEnterprisePortalSecret() error {
 		return err
 	}
 
-	found := false
 	for _, value := range secrets.Items {
 		if value.Name == data.AppConfig.EnterprisePortalSecretName {
 			err = clientset.CoreV1().Secrets(data.AppConfig.TykPodNamespace).
@@ -100,24 +96,20 @@ func BootstrapTykEnterprisePortalSecret() error {
 			if err != nil {
 				return err
 			}
-			found = true
-			break
+			fmt.Println("A previously created enterprise portal secret was identified and deleted")
 		}
 	}
 
-	if found == false {
-		fmt.Println("A previously created enterprise portal secret has not been identified")
-		err = CreateTykEnterprisePortalSecret(clientset)
-		if err != nil {
-			return err
-		}
-	} else {
-		fmt.Println("A previously created enterprise portal secret was identified and deleted")
+	err = CreateTykEnterprisePortalSecret(clientset)
+	if err != nil {
+		return err
 	}
+
 	return nil
 }
 
 func CreateTykEnterprisePortalSecret(clientset *kubernetes.Clientset) error {
+	fmt.Println("Creating enterprise portal secret")
 	secretData := map[string][]byte{
 		TykAuth: []byte(data.AppConfig.UserAuth),
 		TykOrg:  []byte(data.AppConfig.OrgId),

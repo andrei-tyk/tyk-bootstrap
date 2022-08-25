@@ -71,7 +71,7 @@ func main() {
 	}
 
 	if data.AppConfig.EnterprisePortalSecretEnabled {
-		err = helpers.BootstrapTykOperatorSecret()
+		err = helpers.BootstrapTykEnterprisePortalSecret()
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)

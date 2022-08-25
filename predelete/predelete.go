@@ -76,7 +76,7 @@ func PreDeleteEnterprisePortalSecret(clientset *kubernetes.Clientset) error {
 
 	found := false
 	for _, value := range secrets.Items {
-		if value.Name == os.Getenv("ENTERPRISEPORTAL_SECRET_NAME") {
+		if value.Name == os.Getenv("ENTERPRISE_PORTAL_SECRET_NAME") {
 			err = clientset.CoreV1().Secrets(os.Getenv("TYK_POD_NAMESPACE")).Delete(context.TODO(), value.Name, metav1.DeleteOptions{})
 			if err != nil {
 				return err
