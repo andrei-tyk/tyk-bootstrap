@@ -105,14 +105,14 @@ func InitAppDataPostInstall() error {
 	}
 	AppConfig.OperatorSecretName = os.Getenv(constants.OperatorSecretNameEnvVar)
 
-	enterprisePortalSecretEnabledRaw := os.Getenv(constants.enterprisePortalSecretEnabledEnvVar)
+	enterprisePortalSecretEnabledRaw := os.Getenv(constants.EnterprisePortalSecretNameEnvVar)
 	if enterprisePortalSecretEnabledRaw != "" {
 		AppConfig.EnterprisePortalSecretEnabled, err = strconv.ParseBool(enterprisePortalSecretEnabledRaw)
 		if err != nil {
 			return err
 		}
 	}
-	AppConfig.EnterprisePortalSecretName = os.Getenv(constants.enterprisePortalSecretNameEnvVar)
+	AppConfig.EnterprisePortalSecretName = os.Getenv(constants.EnterprisePortalSecretNameEnvVar)
 
 	AppConfig.GatewayAdress = os.Getenv(constants.GatewayAddressEnvVar)
 	bootstrapPortalBoolRaw := os.Getenv(constants.BootstrapPortalEnvVar)
